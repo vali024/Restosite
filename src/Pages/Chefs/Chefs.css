@@ -1,0 +1,224 @@
+.chefs-container {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fafafa;
+}
+
+.chefs-container h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.chefs-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 3rem;
+    color: #333;
+    position: relative;
+    animation: slideDown 0.8s ease-out;
+}
+
+.chefs-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: tomato;
+}
+
+.chefs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 20px;
+}
+
+.chef-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.chef-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.chef-image {
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.chef-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.chef-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chef-overlay span {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.chef-card:hover .chef-overlay {
+    opacity: 1;
+}
+
+.chef-card:hover .chef-image img {
+    transform: scale(1.1);
+}
+
+.chef-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.chef-info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.chef-info h3 {
+    color: tomato;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.chef-specialty, .chef-experience {
+    color: #666;
+    margin: 5px 0;
+}
+
+.chef-bio {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.chef-bio.show {
+    max-height: 200px;
+    margin-top: 15px;
+}
+
+.reviews-section {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.reviews-section h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.review-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.review-rating {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.review-text {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.review-author {
+    color: #333;
+    font-weight: bold;
+}
+
+.review-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: tomato;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.review-button:hover {
+    background-color: #ff3814;
+    transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .chefs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chefs-title {
+        font-size: 2.5rem;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}

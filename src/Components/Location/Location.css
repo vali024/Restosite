@@ -1,0 +1,94 @@
+.app-download{
+    margin:auto auto;
+    margin-top:100px;
+    font-size: max(3vw,20px);
+    text-align: center;
+    font-weight: 500;
+}
+.app-download-platforms{
+    display: flex;
+    justify-content: center;
+    gap:max(2vw,10px);
+    margin-top: 40px;
+}
+.app-download-platforms img{
+    width:max(30vw,120px);
+    max-width:180px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.app-download-platforms img:hover{
+   transform:scale(1.05);
+}
+
+.location-section {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+
+.location-content {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.location-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.address {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.hours {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hours span {
+    font-weight: 600;
+    color: #333;
+}
+
+.directions-btn {
+    background: tomato;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 40px;
+}
+
+.directions-btn:hover {
+    background: #ff3d00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 99, 71, 0.3);
+}
+
+iframe {
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .location-content h2 {
+        font-size: 2rem;
+    }
+    
+    .address, .hours {
+        font-size: 1rem;
+    }
+    
+    .directions-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,586 @@
+/* Import font - add at the top of the file */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
+/* Add at the top of the file */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.navbar {
+    padding: 10px 40px; /* Reduced padding to make height smaller */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: transparent;
+    transform: translateY(0);
+    max-width: 100vw; /* Prevent x-overflow */
+}
+
+/* Style for when scrolling down - hide navbar */
+.navbar.hide {
+    transform: translateY(-100%);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Video background text color adjustment */
+.navbar.video-background a,
+.navbar.video-background li,
+.navbar.video-background button {
+    color: white;
+}
+
+.navbar.video-background button {
+    border: 2px solid white;
+    color: white;
+    animation: none;
+}
+
+.navbar.video-background button:before {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.navbar.video-background button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Add logo animation */
+.navbar .logo {
+    width: 150px;
+    transition: transform 0.3s ease;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.navbar .logo:hover {
+    transform: scale(1.05);
+}
+
+/* Remove the existing a::before animation for logo only */
+.navbar a.logo-link::before {
+    display: none;
+}
+
+.navbar-menu{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    color:#337f00;
+    font-size:18px;
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navbar button {
+    background: transparent;
+    font-size: 15px;
+    color: #337f00;
+    border: 2px solid tomato;
+    padding: 8px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: pulse 2s infinite;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.navbar button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: tomato;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.navbar button:hover {
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 99, 71, 0.4);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.navbar button:hover:before {
+    width: 200%;
+    height: 300%;
+}
+
+.navbar button:active {
+    transform: scale(0.95);
+}
+
+/* Add pulsing animation for the button */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 99, 71, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 99, 71, 0);
+    }
+}
+
+.navbar .active {
+    color: tomato;
+    font-weight: 500;
+}
+
+.navbar.video-background .active {
+    color: white;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Add shadow for better visibility */
+}
+
+.navbar .active::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, tomato, transparent);
+    transform: scaleX(1);
+}
+
+.navbar.video-background .active::before {
+    background: linear-gradient(to right, transparent, white, transparent);
+}
+
+.navbar li{
+    cursor: pointer;
+}
+
+.navbar-search-icon{
+    position: relative;
+}
+
+.navbar-search-icon .dot{
+    position: absolute;
+    min-width:10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 5px;
+    top:-8px;
+    right:-8px
+}
+
+.navbar.video-background .navbar-search-icon .dot {
+    background-color: white;
+}
+
+.navbar-profile{
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-profile-dropdown{
+    position:absolute;
+    display:none;
+    right:0;
+    z-index:1;
+}
+
+.navbar-profile:hover .nav-profile-dropdown{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    background-color:#fff2ef;
+    padding:12px 25px;
+    border-radius:4px;
+    border:1px solid tomato;
+    outline:2px solid white;
+    list-style: none;
+}
+
+.nav-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    cursor:pointer;
+    color: #337f00; /* Reset color for dropdown items */
+}
+
+.nav-profile-dropdown img{
+    width:20px;
+}
+
+.nav-profile-dropdown li:hover{
+    color:tomato;
+}
+
+.navbar a {
+    position: relative;
+    text-decoration: none;
+    color: #337f00;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+
+.navbar.video-background a::before {
+    background: linear-gradient(to right, transparent, white, transparent);
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, tomato, transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar a:hover {
+    color: tomato;
+}
+
+.navbar.video-background a:hover {
+    color: white;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.navbar a:hover::before {
+    transform: scaleX(1);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 10px;
+    background-color: #fff4f2;
+    border-radius: 8px;
+    margin-left: 15px;
+}
+
+.navbar.video-background .hamburger {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: tomato;
+    transition: all 0.3s ease;
+}
+
+.navbar.video-background .hamburger span {
+    background-color: white;
+}
+
+@media (max-width:1050px){
+    .navbar .logo{
+        width:140px;
+    }
+    .navbar-menu{
+        gap:20px;
+        font-size: 17px;
+    }
+    .navbar-right{
+        gap:30px;
+    }
+    .navbar-right img{
+        width:22px;
+    }
+    .navbar-right button{
+        padding:6px 20px; /* Smaller padding */
+    }
+}
+
+@media (max-width:900px){
+    .navbar .logo{
+        width:120px;
+    }
+    .navbar-menu{
+        gap:15px;
+        font-size: 16px;
+    }
+    .navbar-right{
+        gap:30px;
+    }
+    .navbar-right img{
+        width:20px;
+    }
+    .navbar-right button{
+        padding:5px 15px; /* Smaller padding */
+        font-size:15px;
+    }
+}
+
+@media (max-width:750px){
+    .navbar .logo{
+        width: 100px;
+    }
+    .hamburger {
+        display: flex;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .hamburger.active {
+        position: fixed;
+        right: 15px;
+        top: 15px; /* Adjusted position */
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        left: unset;
+        width: 75%;
+        height: 100vh;
+        background: linear-gradient(to left, #fff4f2, white);
+        flex-direction: column;
+        padding: 80px 40px; /* Reduced top padding */
+        transition: all 0.4s ease-in-out;
+        z-index: 999;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-menu.mobile-menu-open {
+        right: 0;
+        left: unset;
+    }
+
+    .navbar-menu a {
+        font-size: 20px;
+        padding: 15px 0;
+        color: #337f00; /* Reset color for mobile menu */
+        font-weight: 500;
+        border-bottom: 1px solid rgba(73, 85, 126, 0.1);
+        width: 100%;
+    }
+
+    .navbar-menu a:hover {
+        color: tomato;
+    }
+
+    .navbar-menu a::after {
+        display: none;
+    }
+
+    .navbar-menu a.active {
+        color: tomato;
+        border-bottom: 1px solid tomato;
+    }
+
+    .navbar-right {
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .navbar a::before {
+        display: none;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .mobile-menu-container {
+        display: block;
+    }
+
+    .hamburger {
+        display: flex;
+        position: fixed;
+        top: 15px; /* Adjusted position */
+        right: 20px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1001;
+    }
+    
+    /* Update the mobile menu styles */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: linear-gradient(to left, #fff4f2, white);
+        display: flex;
+        flex-direction: column;
+        padding: 70px 40px; /* Reduced top padding */
+        transition: all 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-menu.active {
+        right: 0;
+    }
+
+    /* Add overlay for clicking outside */
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .mobile-menu-overlay.active {
+        display: block;
+    }
+
+    /* Enhanced animation for menu items */
+    .navbar-menu a {
+        transform: translateX(50px);
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
+
+    .navbar-menu.mobile-menu-open a {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .navbar-menu.mobile-menu-open a:nth-child(1) { transition-delay: 0.1s; }
+    .navbar-menu.mobile-menu-open a:nth-child(2) { transition-delay: 0.2s; }
+    .navbar-menu.mobile-menu-open a:nth-child(3) { transition-delay: 0.3s; }
+    .navbar-menu.mobile-menu-open a:nth-child(4) { transition-delay: 0.4s; }
+
+    .mobile-menu a {
+        font-size: 20px;
+        padding: 15px 0;
+        color: #337f00;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(73, 85, 126, 0.1);
+        width: 100%;
+    }
+
+    .mobile-menu a:hover {
+        color: tomato;
+    }
+
+    .mobile-menu a.active {
+        color: tomato;
+        border-bottom: 1px solid tomato;
+    }
+    
+    .hamburger.active {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .hamburger.active span {
+        background-color: #337f00;
+    }
+    
+    .navbar.video-background .hamburger.active span {
+        background-color: white;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar-menu {
+        width: 85%;
+        padding: 80px 25px; /* Reduced top padding */
+    }
+
+    .navbar-menu a {
+        font-size: 18px;
+    }
+
+    .navbar .logo {
+        width: 80px;
+    }
+    
+    .navbar-right button {
+        padding: 5px 10px; /* Smaller padding */
+        font-size: 13px;
+    }
+
+    .mobile-menu {
+        width: 85%;
+        padding: 70px 25px; /* Reduced top padding */
+    }
+
+    .mobile-menu a {
+        font-size: 18px;
+    }
+}
+
+.mobile-menu-container {
+    display: none;
+}
+
+
+/* Add styles for video background */
+.navbar.has-video-bg {
+    background: transparent;
+}
+
+.navbar.has-video-bg .navbar-menu,
+.navbar.has-video-bg a,
+.navbar.has-video-bg button {
+    color: white;
+}
+
+.navbar.has-video-bg button {
+    border-color: white;
+}
+
+.navbar.has-video-bg.scrolled {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}

@@ -1,0 +1,230 @@
+.header-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 1000px; /* Add 3D perspective */
+  margin: 0;
+  padding: 0;
+  margin-bottom: 4rem; /* Add space below the header */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+  border-radius: 0 0 50px 50px; /* Curved edges */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  transform-style: preserve-3d;
+}
+
+.header-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 1.2s ease-out, float 6s ease-in-out infinite;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  transform: translateZ(50px);
+}
+
+.header-subtitle {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  animation: fadeInUp 1.2s ease-out, float 6s ease-in-out infinite 0.5s;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+  transform: translateZ(30px);
+}
+
+.about-button {
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  transform: translateZ(40px);
+  animation: fadeInUp 1.2s ease-out 0.3s backwards;
+}
+
+.about-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateZ(40px) scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateZ(40px) translateY(0);
+  }
+  50% {
+    transform: translateZ(40px) translateY(-10px);
+  }
+}
+
+/* Enhanced video transitions */
+.header-video[src] {
+  opacity: 1;
+  animation: videoFadeIn 1s ease-in-out, scale3d 20s ease-in-out infinite;
+}
+
+@keyframes scale3d {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    width: 100vw;
+    height: 80vh;
+    margin-bottom: 3rem; /* Adjust space for mobile */
+  }
+  
+  .header-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+  
+  .header-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .header-video {
+    border-radius: 0 0 30px 30px;
+    width: 100vw;
+    height: 100%;
+  }
+
+  .about-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    height: 60vh;
+    margin-bottom: 2rem; /* Adjust space for smaller devices */
+  }
+
+  .header-video {
+    border-radius: 0 0 20px 20px;
+  }
+}
+
+/* High-resolution display support */
+@media (min-resolution: 192dpi) {
+  .header-video {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Video loading animation */
+.header-video:not([src]) {
+  opacity: 0;
+}
+
+/* Add glass morphism effect for modern browsers */
+@supports (backdrop-filter: blur(10px)) {
+  .header-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.6)
+    );
+    backdrop-filter: blur(3px);
+  }
+}
+
+@keyframes videoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Button animation styles */
+.animate-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.animate-button:active {
+  transform: translateY(1px);
+}
+
+.animate-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.animate-button:hover::after {
+  transform: translateX(0);
+}
